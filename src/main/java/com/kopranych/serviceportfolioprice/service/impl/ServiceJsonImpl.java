@@ -17,4 +17,10 @@ public class ServiceJsonImpl implements ServiceJson {
         List<StockParametrs> result = gson.fromJson(json, type);
         return result;
     }
+
+    @Override
+    public StockParametrs jsonParseSingleStockParametrs(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, StockParametrs.class);
+    }
 }

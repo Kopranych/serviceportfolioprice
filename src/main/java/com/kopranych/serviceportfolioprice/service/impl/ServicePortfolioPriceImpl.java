@@ -20,7 +20,7 @@ public class ServicePortfolioPriceImpl implements ServicePortfolioPrice {
 
     @Override
     public AllocationSector getPortfolioPrice(Stocks stocks) {
-        List<StockParametrs> stockParametrsList = serviceIextrading.getStockParametrs();
+        List<StockParametrs> stockParametrsList = serviceIextrading.getStockParametrs(stocks);
         return serviceCalculation.calculationPortfolioSumPrice(stocks, stockParametrsList);
     }
 }

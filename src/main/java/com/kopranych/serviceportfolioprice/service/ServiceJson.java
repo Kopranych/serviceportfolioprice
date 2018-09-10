@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ServiceJson {
     List<StockParametrs> jsonParseStockParametrs(String json);
+    StockParametrs jsonParseSingleStockParametrs(String json);
 }

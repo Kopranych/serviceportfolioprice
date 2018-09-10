@@ -14,14 +14,6 @@ public class ServiceCalculationImpl implements ServiceCalculation {
     @Override
     public AllocationSector calculationPortfolioSumPrice(Stocks stocks, List<StockParametrs> stockParametrsList) {
         AllocationSector allocationSector = new AllocationSector();
-        /*stockParametrsList.forEach(stockParametrs -> {
-            stocks.getStocks().forEach(stock -> {
-                if (stock.getSymbol().equals(stockParametrs.getSymbol())) {
-                    stock.setAssetValue(calculAssetValue(stock, stockParametrs));
-                    stock.setSector(stockParametrs.getSector());
-                }
-            });
-        });*/
 
         for (StockParametrs stockParametrs : stockParametrsList) {
             for (Stock stock : stocks.getStocks()) {
@@ -33,8 +25,8 @@ public class ServiceCalculationImpl implements ServiceCalculation {
         }
 
         Iterator<Stock> it = stocks.getStocks().iterator();
-        while(it.hasNext()){
-            if(it.next().getSector()==null){
+        while (it.hasNext()) {
+            if (it.next().getSector() == null) {
                 it.remove();
             }
         }
@@ -45,16 +37,18 @@ public class ServiceCalculationImpl implements ServiceCalculation {
         for (String s : sectorNameSet) {
             for (Stock stock : stocks.getStocks()) {
 
-                    if (s.equals(stock.getSector())) {
-                        sumAssetValue += stock.getAssetValue();
-                    }
+                if (s.equals(stock.getSector())) {
+                    sumAssetValue += stock.getAssetValue();
+                }
 
             }
             Sector sector = new Sector();
             sector.setSector(s);
             sector.setAssetValue(sumAssetValue);
             allocationSector.getAllocations().add(sector);
+            sumAssetValue = 0;
         }
+
         return calculPortfolioValueAndProportion(allocationSector);
     }
 
