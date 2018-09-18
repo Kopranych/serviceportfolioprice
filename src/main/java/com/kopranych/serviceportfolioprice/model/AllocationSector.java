@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class AllocationSector {
-    private double value;
+    private float value;
     private List<Sector> allocations = new ArrayList<>();
 
 }

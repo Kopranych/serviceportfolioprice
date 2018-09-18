@@ -42,9 +42,10 @@ public class ServiceCalculationImpl implements ServiceCalculation {
                 }
 
             }
+
             Sector sector = new Sector();
             sector.setSector(s);
-            sector.setAssetValue(sumAssetValue);
+            sector.setAssetValue((int)Math.round(sumAssetValue));
             allocationSector.getAllocations().add(sector);
             sumAssetValue = 0;
         }
@@ -59,14 +60,15 @@ public class ServiceCalculationImpl implements ServiceCalculation {
 
     private AllocationSector calculPortfolioValueAndProportion(AllocationSector allocationSector) {
 
-        double value = 0;
+        float value = 0;
         for (Sector sector : allocationSector.getAllocations()) {
             value += sector.getAssetValue();
         }
         allocationSector.setValue(value);
 
         for (Sector sector : allocationSector.getAllocations()) {
-            sector.setProportion(sector.getAssetValue() / allocationSector.getValue());
+            float proportion = (float)Math.round((sector.getAssetValue() / allocationSector.getValue() )* 1000f) / 1000f;
+            sector.setProportion(proportion);
         }
 
         return allocationSector;

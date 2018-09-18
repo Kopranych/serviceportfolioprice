@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class Sector {
     private String sector;
-    private double assetValue;
-    private double proportion;
+    private int assetValue;
+    private float proportion;
 }
